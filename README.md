@@ -1,36 +1,48 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<img src="./docs/logo.png" alt="Logo" width="500" height="250" style="display:block; margin:auto"/>
 
-## Getting Started
 
-First, run the development server:
+#  **SpeedType**
 
+--- 
+
+This is a speed typing trainer. The project allows you to practice typing words, track errors, timer, and accuracy, and also supports light and dark themes.
+
+# 🛠 Tech Stack
+![React](https://img.shields.io/badge/React-blue?logo=react)![Next.js](https://img.shields.io/badge/Next.js-black?logo=next.js)![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-blue?logo=tailwind-css)![TypeScript](https://img.shields.io/badge/TypeScript-blue?logo=typescript)![Lucide](https://img.shields.io/badge/LucideReact-red?logo=icon)![next-theme](https://img.shields.io/badge/next-themes-black?logo=)
+- **React 19**
+- **Next.js 15**
+- **TypeScript**
+- **Tailwind CSS**
+- **next-themes** for theme switching
+- **Lucide React** for icons
+
+## ⚡ Features
+
+- 🕒 Countdown timer
+- ✅ Error and accuracy tracking
+- 🔄 Theme switcher: Light / Dark / System
+- 🎹 Visual keyboard
+
+# 🚀 Getting Started
+
+### 1. Clone the repo:
+```bash
+git clone https://github.com/sayk-77/speed-type
+cd speedtype
+```
+
+### 2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 4. Open http://localhost:3000 in your browser
