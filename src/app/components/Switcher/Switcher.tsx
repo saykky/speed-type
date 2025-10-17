@@ -3,10 +3,10 @@
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import {useEffect} from "react";
+import {JSX, useEffect} from "react";
 
-export default function Switcher() {
-    const { theme, resolvedTheme, setTheme } = useTheme();
+export default function Switcher() : JSX.Element{
+    const { resolvedTheme, setTheme } = useTheme();
     const [open, setOpen] = React.useState(false);
 
     const toggleOpen = () => setOpen((prev) => !prev);
@@ -38,8 +38,8 @@ export default function Switcher() {
                 className="relative p-1 flex border rounded-xl border-zinc-800 dark:text-white"
                 ref={buttonRef}
             >
-                <Sun color="black" className={`inline-block h-5 w-5 transition-transform ${resolvedTheme === "dark" ? "scale-0 rotate-90" : "scale-100 rotate-0"}`} />
-                <Moon className={`h-5 w-5 transition-transform ${resolvedTheme === "dark" ? "scale-100 rotate-0" : "scale-0 -rotate-90"}`} />
+                <Sun color="black" className={`inline-block h-[30px] w-[30px] transition-transform ${resolvedTheme === "dark" ? "scale-0 rotate-90" : "scale-100 rotate-0"}`} />
+                <Moon className={`h-[30px] w-[30px] transition-transform ${resolvedTheme === "dark" ? "scale-100 rotate-0" : "scale-0 -rotate-90"}`} />
                 <span className="sr-only">Toggle theme</span>
             </button>
 

@@ -5,7 +5,7 @@ import {JSX} from "react";
 import {Logo, Information} from "@/app/components/Header";
 import Switcher from "@/app/components/Switcher";
 
-export default function Header(): JSX.Element {
+export default function Header() {
     return (
         <div className="max-w-[1200px] m-auto pt-[30px] flex items-center justify-between">
             <Logo />

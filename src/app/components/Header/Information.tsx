@@ -1,5 +1,6 @@
 import {Timer, CircleX, CheckCircle} from "lucide-react";
 import {InformationItem} from "@/app/components/Header";
+import {JSX} from "react";
 
 type InformationProps = {
     errors: number
