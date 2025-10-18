@@ -43,7 +43,7 @@ This is a speed typing trainer. The project allows you to practice typing words,
 
 ### 1. Clone the repo:
 ```bash
-git clone https://github.com/sayk-77/speed-type
+git clone https://github.com/saykky/speed-type
 cd speedtype
 ```
 
