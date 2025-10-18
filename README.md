@@ -27,7 +27,7 @@ This is a speed typing trainer. The project allows you to practice typing words,
 - ✅ Error and accuracy tracking
 - 🔄 Theme switcher: Light / Dark / System
 - 🎹 Visual keyboard
-- 🔧 Custom hook: [useTypingWords](src/app/hooks/useTypingWords.tsx)
+- 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.tsx), [useTypingTrainer](src/app/hooks/useTypingTrainer.tsx)
 
 
 ## Preview images
