@@ -7,6 +7,7 @@ import useTypingWords from "@/app/hooks/useTypingWords";
 import {WORDS_1} from "@/app/const/words";
 import {Words} from "@/app/components/Words";
 import useTypingTrainer from "@/app/hooks/useTypingTrainer";
+import Author from "@/app/components/Author/Author";
 
 export default function Home() {
     const {
@@ -39,8 +40,7 @@ export default function Home() {
                     activeKey={activeKey}
                 />
 
-                {/* author */}
-                <p className="font-bold text-zinc-800 dark:text-gray-300 text-[30px] pt-[10%]">Dev by @saykky</p>
+                <Author />
             </main>
         </div>
     );
