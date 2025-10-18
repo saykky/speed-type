@@ -9,7 +9,7 @@ This is a speed typing trainer. The project allows you to practice typing words,
 
 ## Demo [click me](https://speed-type-two.vercel.app/)
 <div align="center">
-  <img src="./docs/preview.gif" alt="Logo" width="500" height="300">
+  <img src="./docs/preview.gif" alt="Logo" width="600" height="300">
 </div>
 
 # 🛠 Tech Stack
@@ -32,11 +32,11 @@ This is a speed typing trainer. The project allows you to practice typing words,
 
 ## Preview images
 <div align="center">
-  <img src="./docs/preview_dark.png" alt="Logo" width="500" height="300">
+  <img src="./docs/preview_dark.png" alt="Logo" width="500" height="350">
 </div>
 
 <div align="center">
-  <img src="./docs/preview_light.png" alt="Logo" width="500" height="300">
+  <img src="./docs/preview_light.png" alt="Logo" width="500" height="350">
 </div>
 
 # 🚀 Getting Started
