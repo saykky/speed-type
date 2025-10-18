@@ -1,6 +1,11 @@
 import {useMemo} from "react";
 
-export default function useTypingWords(words: string[], currentIndex: number) {
+type useTypingTrainerReturn = {
+    visibleWords: string[],
+    stylesWords: string[]
+}
+
+export default function useTypingWords(words: string[], currentIndex: number): useTypingTrainerReturn {
     return useMemo(() => {
         const prevWord = currentIndex > 0 ? words[currentIndex - 1] : ""
         const currentWord = words[currentIndex] || ""
