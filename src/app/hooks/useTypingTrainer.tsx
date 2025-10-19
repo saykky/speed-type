@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef} from "react";
 
-type useTypingTrainerReturn = {
+type UseTypingTrainerReturn = {
     currentIndex: number
     currentCharIndex: number
     errors: number[]
@@ -9,14 +9,14 @@ type useTypingTrainerReturn = {
     accuracy: number
 }
 
-export default function useTypingTrainer(words: string[]): useTypingTrainerReturn {
+export default function useTypingTrainer(words: string[]): UseTypingTrainerReturn {
     const [currentIndex, setCurrentIndex] = useState<number>(0)
     const [currentCharIndex, setCurrentCharIndex] = useState<number>(0)
     const [errors, setErrors] = useState<number[]>([])
     const [typedChars, setTypedChars] = useState<number>(0);
     const [correctChars, setCorrectChars] = useState<number>(0);
     const [activeKey, setActiveKey] = useState<string | null>(null);
-    const [timeLeft, setTimeLeft] = useState<number>(30)
+    const [timeLeft, setTimeLeft] = useState<number>(3)
     const [isRunning, setIsRunning] = useState<boolean>(false);
 
     const currentIndexRef = useRef(currentIndex)
@@ -33,7 +33,8 @@ export default function useTypingTrainer(words: string[]): useTypingTrainerRetur
     useEffect(() => {
         const keyDown = (e: KeyboardEvent) => {
             if (!/^[a-zA-Z]$/.test(e.key) || currentIndexRef.current >= wordsRef.current.length) return
-            setIsRunning(true)
+            if (!isRunning) setIsRunning(true)
+
             setActiveKey(e.key)
 
             const word = wordsRef.current[currentIndexRef.current]
@@ -68,18 +69,29 @@ export default function useTypingTrainer(words: string[]): useTypingTrainerRetur
         }
     }, [])
 
+    const clearTimer = () => {
+        if (intervalRef.current) {
+            window.clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+    }
+
     useEffect(() => {
         if (!isRunning || timeLeft <= 0) return
 
         intervalRef.current = setInterval(() => {
-            setTimeLeft(prev => prev - 1)
+            setTimeLeft(prev => {
+                if (prev <= 1) {
+                    setIsRunning(false)
+                    clearTimer()
+                    return 0
+                }
+                return prev - 1
+            })
         }, 1000)
 
         return () => {
-            if (intervalRef.current) {
-                clearInterval(intervalRef.current)
-                intervalRef.current = null
-            }
+            clearTimer()
         }
     }, [isRunning]);
 
