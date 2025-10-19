@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react"
-import Image from 'next/image';
+import {LogoBlock} from '@/app/components/Modals';
 
 type StartModalProps = {
     isOpen: boolean
@@ -14,15 +14,7 @@ export default function StartModal({ isOpen, onStart }: StartModalProps) {
     return (
         <div className="fixed inset-0 flex items-center justify-center z-50">
             <div className="bg-white dark:bg-zinc-800 p-6 rounded-xl max-w-[1000px] shadow-2xl">
-                <div className="flex items-center justify-center gap-10">
-                    <Image
-                        src={'/favicon.ico'}
-                        alt="logo"
-                        width={100}
-                        height={50}
-                    />
-                    <h2 className="text-[50px] font-bold">SpeedType</h2>
-                </div>
+               <LogoBlock />
                 <p className="my-10 text-center">
                     Enter the words as quickly and accurately as possible. Your speed, accuracy, and number of errors will be monitored.
                     Select the desired time for the test by pressing the button. The countdown will start automatically after entering the first letter.
@@ -32,7 +24,7 @@ export default function StartModal({ isOpen, onStart }: StartModalProps) {
                         {[15, 30, 60, 120].map(time => (
                             <button
                                 key={time}
-                                className="w-[100px] py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition cursor-pointer"
+                                className="w-[100px] py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition cursor-pointer"
                                 onClick={() => onStart(time)}
                             >
                                 {time} sec

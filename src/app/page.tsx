@@ -1,48 +1,31 @@
 "use client"
 
-import React from "react";
-import Header from "@/app/components/Header/Header";
-import {Keyboard} from "@/app/components/Keyboard";
-import useTypingWords from "@/app/hooks/useTypingWords";
-import {WORDS} from "@/app/const/words";
-import {Words} from "@/app/components/Words";
-import useTypingTrainer from "@/app/hooks/useTypingTrainer";
-import Author from "@/app/components/Author/Author";
+import React, { useState } from 'react';
+import { StartModal } from '@/app/components/Modals';
+import Training from '@/app/components/Training';
 
 export default function Home() {
-    const time: number = 30
+    const [startModalIsOpen, setStartModalIsOpen] = useState<boolean>(true);
+    const [time, setTime] = useState<number>(0);
 
-    const {
-        currentIndex,
-        currentCharIndex,
-        errors,
-        activeKey,
-        timeLeft,
-        accuracy
-    } = useTypingTrainer(WORDS, time)
+    const startTraining = (time: number) => {
+        setStartModalIsOpen(false)
+        setTime(time)
+    }
 
-    const {visibleWords, stylesWords} = useTypingWords(WORDS, currentIndex)
+    const onRestartTraining = () => {
+        setStartModalIsOpen(true)
+        setTime(0)
+    }
 
     return (
         <div className="min-h-screen flex flex-col items-center">
+            <StartModal
+                isOpen={startModalIsOpen}
+                onStart={startTraining}
+            />
             <main>
-                <Header
-                    timeLeft={timeLeft}
-                    errors={errors.length}
-                    accuracy={accuracy}
-                />
-                <Words
-                    words={visibleWords}
-                    styles={stylesWords}
-                    currentWordVisibleIndex={1}
-                    currentCharIndex={currentCharIndex}
-                    errors={errors}
-                />
-                <Keyboard
-                    activeKey={activeKey}
-                />
-
-                <Author />
+                {time > 0 && <Training time={time} onRestartTraining={onRestartTraining}/>}
             </main>
         </div>
     );

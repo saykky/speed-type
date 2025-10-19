@@ -6,7 +6,6 @@ type KeyboardItemProps = {
 }
 
 export default function KeyboardItem({symbol, isActive}: KeyboardItemProps) {
-    // useEffect and useState are needed to animate the illumination of a pressed key.
     const [showActive, setShowActive] = useState<boolean>(false)
 
     useEffect(() => {
