@@ -4,12 +4,14 @@ import React from "react";
 import Header from "@/app/components/Header/Header";
 import {Keyboard} from "@/app/components/Keyboard";
 import useTypingWords from "@/app/hooks/useTypingWords";
-import {WORDS_1} from "@/app/const/words";
+import {WORDS} from "@/app/const/words";
 import {Words} from "@/app/components/Words";
 import useTypingTrainer from "@/app/hooks/useTypingTrainer";
 import Author from "@/app/components/Author/Author";
 
 export default function Home() {
+    const time: number = 30
+
     const {
         currentIndex,
         currentCharIndex,
@@ -17,9 +19,9 @@ export default function Home() {
         activeKey,
         timeLeft,
         accuracy
-    } = useTypingTrainer(WORDS_1)
+    } = useTypingTrainer(WORDS, time)
 
-    const {visibleWords, stylesWords} = useTypingWords(WORDS_1, currentIndex)
+    const {visibleWords, stylesWords} = useTypingWords(WORDS, currentIndex)
 
     return (
         <div className="min-h-screen flex flex-col items-center">

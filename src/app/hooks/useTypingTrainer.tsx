@@ -9,31 +9,45 @@ type UseTypingTrainerReturn = {
     accuracy: number
 }
 
-export default function useTypingTrainer(words: string[]): UseTypingTrainerReturn {
+export default function useTypingTrainer(words: string[], time: number): UseTypingTrainerReturn {
     const [currentIndex, setCurrentIndex] = useState<number>(0)
     const [currentCharIndex, setCurrentCharIndex] = useState<number>(0)
     const [errors, setErrors] = useState<number[]>([])
     const [typedChars, setTypedChars] = useState<number>(0);
     const [correctChars, setCorrectChars] = useState<number>(0);
     const [activeKey, setActiveKey] = useState<string | null>(null);
-    const [timeLeft, setTimeLeft] = useState<number>(3)
+    const [timeLeft, setTimeLeft] = useState<number>(time)
     const [isRunning, setIsRunning] = useState<boolean>(false);
 
     const currentIndexRef = useRef(currentIndex)
     const currentCharIndexRef = useRef(currentCharIndex)
     const wordsRef = useRef(words)
     const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+    const isRunningRef = useRef<boolean>(isRunning)
+    const timeLeftRef = useRef<number>(timeLeft)
+
+    const clearTimer = () => {
+        if (intervalRef.current) {
+            window.clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+    }
 
     useEffect(() => {
         currentIndexRef.current = currentIndex
         currentCharIndexRef.current = currentCharIndex
         wordsRef.current = words
-    }, [currentIndex, currentCharIndex, words]);
+        isRunningRef.current = isRunning
+        timeLeftRef.current = timeLeft
+    }, [currentIndex, currentCharIndex, words, isRunning, timeLeft]);
 
     useEffect(() => {
         const keyDown = (e: KeyboardEvent) => {
-            if (!/^[a-zA-Z]$/.test(e.key) || currentIndexRef.current >= wordsRef.current.length) return
-            if (!isRunning) setIsRunning(true)
+            if (!/^[a-zA-Z]$/.test(e.key)) return
+            if (currentIndexRef.current >= wordsRef.current.length) return
+
+            if (!isRunningRef.current) setIsRunning(true)
+            if (!isRunningRef.current || timeLeftRef.current <= 0) return
 
             setActiveKey(e.key)
 
@@ -55,6 +69,12 @@ export default function useTypingTrainer(words: string[]): UseTypingTrainerRetur
                 setCurrentIndex(prev => prev + 1)
                 setCurrentCharIndex(0)
                 setErrors([])
+
+                const newWordIndex = currentIndexRef.current + 1
+                if (newWordIndex >= wordsRef.current.length) {
+                    setIsRunning(false)
+                    clearTimer()
+                }
             }
         }
 
@@ -69,31 +89,22 @@ export default function useTypingTrainer(words: string[]): UseTypingTrainerRetur
         }
     }, [])
 
-    const clearTimer = () => {
-        if (intervalRef.current) {
-            window.clearInterval(intervalRef.current)
-            intervalRef.current = null
-        }
-    }
-
     useEffect(() => {
-        if (!isRunning || timeLeft <= 0) return
+        if (!isRunningRef.current || timeLeftRef.current <= 0) return
 
         intervalRef.current = setInterval(() => {
             setTimeLeft(prev => {
                 if (prev <= 1) {
-                    setIsRunning(false)
                     clearTimer()
+                    setIsRunning(false)
                     return 0
                 }
                 return prev - 1
             })
         }, 1000)
 
-        return () => {
-            clearTimer()
-        }
-    }, [isRunning]);
+        return () => clearTimer()
+    }, []);
 
     const accuracy: number = typedChars ? Math.round((correctChars / typedChars) * 100) : 0
 
