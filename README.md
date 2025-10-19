@@ -30,13 +30,26 @@ This is a speed typing trainer. The project allows you to practice typing words,
 - 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.tsx), [useTypingTrainer](src/app/hooks/useTypingTrainer.tsx)
 
 
-## Preview images
+## Preview dark theme
 <div align="center">
-  <img src="./docs/preview_dark.png" alt="Logo" width="500" height="350">
+  <img src="./docs/dark_preview_dark_start.png" alt="Logo" width="600" height="400">
+</div>
+<div align="center">
+  <img src="./docs/preview_dark.png" alt="Logo" width="600" height="400">
+</div>
+<div align="center">
+  <img src="./docs/preview_dark_end.png" alt="Logo" width="600" height="400">
 </div>
 
+## Preview light theme
 <div align="center">
-  <img src="./docs/preview_light.png" alt="Logo" width="500" height="350">
+  <img src="./docs/preview_light_start.png" alt="Logo" width="600" height="400">
+</div>
+<div align="center">
+  <img src="./docs/preview_light.png" alt="Logo" width="600" height="400">
+</div>
+<div align="center">
+  <img src="./docs/preview_light_end.png" alt="Logo" width="600" height="400">
 </div>
 
 # 🚀 Getting Started
