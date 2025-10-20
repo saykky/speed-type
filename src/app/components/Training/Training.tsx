@@ -1,5 +1,4 @@
 import useTypingTrainer from '@/app/hooks/useTypingTrainer';
-import { WORDS } from '@/app/const/words';
 import useTypingWords from '@/app/hooks/useTypingWords';
 import { Header } from '@/app/components/Header';
 import { Words } from '@/app/components/Words';
@@ -7,6 +6,8 @@ import Author from '@/app/components/Author';
 import { Keyboard } from '@/app/components/Keyboard';
 import { EndModal } from '@/app/components/Modals';
 import { useEffect, useState } from 'react';
+import getRandomWords from '@/app/lib/randomWords';
+import { WORDS } from '@/app/const/words';
 
 type TrainingProps = {
     time: number
@@ -15,6 +16,7 @@ type TrainingProps = {
 
 export default function Training({time, onRestartTraining}: TrainingProps) {
     const [endModalIsOpen, setEndModalIsOpen] = useState(false);
+    const words = getRandomWords(WORDS)
 
     const {
         currentIndex,
@@ -26,9 +28,9 @@ export default function Training({time, onRestartTraining}: TrainingProps) {
         accuracy,
         charCount,
         cpm
-    } = useTypingTrainer(WORDS, time);
+    } = useTypingTrainer(words, time);
 
-    const { visibleWords, stylesWords } = useTypingWords(WORDS, currentIndex);
+    const { visibleWords, stylesWords } = useTypingWords(words, currentIndex);
 
     const restartTraining = () => {
         setEndModalIsOpen(false)

@@ -10,4 +10,5 @@ export const WORDS: string[] = [
     "opportunity", "environment", "consequence", "magnificent", "architecture", "photography", "infrastructure", "measurement", "destination", "preparation",
     "observation", "illustration", "imagination", "anticipation", "frustration", "satisfaction", "motivation", "aspiration", "dedication", "perspective"
 ];
+
 export type STATUS = "active" | "correct" | "wrong" | "pending"
