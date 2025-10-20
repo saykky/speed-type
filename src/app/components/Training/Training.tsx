@@ -5,7 +5,7 @@ import { Words } from '@/app/components/Words';
 import Author from '@/app/components/Author';
 import { Keyboard } from '@/app/components/Keyboard';
 import { EndModal } from '@/app/components/Modals';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import getRandomWords from '@/app/lib/randomWords';
 import { WORDS } from '@/app/const/words';
 
@@ -16,7 +16,7 @@ type TrainingProps = {
 
 export default function Training({time, onRestartTraining}: TrainingProps) {
     const [endModalIsOpen, setEndModalIsOpen] = useState(false);
-    const words = getRandomWords(WORDS)
+    const words = useMemo(() => getRandomWords(WORDS), [])
 
     const {
         currentIndex,
