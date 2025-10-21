@@ -11,7 +11,7 @@ type HeaderProps = {
 
 export default function Header({timeLeft, errors, accuracy}: HeaderProps) {
     return (
-        <div className="max-w-[1200px] m-auto pt-[30px] flex items-center justify-between">
+        <div className="max-w-[1200px] m-auto pt-[30px] flex items-center justify-between pb-2">
             <Logo />
                 <Information
                     errors={errors}

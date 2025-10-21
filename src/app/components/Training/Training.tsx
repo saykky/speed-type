@@ -6,7 +6,7 @@ import Author from '@/app/components/Author';
 import { Keyboard } from '@/app/components/Keyboard';
 import { EndModal } from '@/app/components/Modals';
 import { useEffect, useMemo, useState } from 'react';
-import getRandomWords from '@/app/lib/randomWords';
+import { getRandomWords } from '@/app/lib/utils';
 import { WORDS } from '@/app/const/words';
 
 type TrainingProps = {
