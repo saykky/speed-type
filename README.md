@@ -5,11 +5,11 @@
 
 #  **SpeedType** [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-This is a speed typing trainer. The project allows you to practice typing words, track errors, timer, and accuracy, and also supports light and dark themes.
+Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Practice and compete!
 
 ## Demo [click me](https://speed-type-two.vercel.app/)
 <div align="center">
-  <img src="./docs/preview.gif" alt="Logo" width="600" height="300">
+  <img src="./docs/preview.gif" alt="Logo" width="800" height="300">
 </div>
 
 # 🛠 Tech Stack
@@ -20,6 +20,7 @@ This is a speed typing trainer. The project allows you to practice typing words,
 - **Tailwind CSS**
 - **next-themes** for theme switching
 - **Lucide React** for icons
+- **Supabase** database
 
 ## ⚡ Features
 
@@ -28,7 +29,11 @@ This is a speed typing trainer. The project allows you to practice typing words,
 - 🔄 Theme switcher: Light / Dark / System
 - 🎹 Visual keyboard
 - 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.tsx), [useTypingTrainer](src/app/hooks/useTypingTrainer.tsx)
+- 🗃️ Supabase integration
+- 🌟 Leaderboard of the best users
 
+## 🙏🏻 Acknowledgments
+- [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
 ## Preview dark theme
 <div align="center">
@@ -52,6 +57,10 @@ This is a speed typing trainer. The project allows you to practice typing words,
   <img src="./docs/preview_light_end.png" alt="Logo" width="600" height="400">
 </div>
 
+## Preview highlighting in the top
+<div align="center">
+  <img src="./docs/preview_top.png" alt="Logo" width="600" height="400">
+</div>
 # 🚀 Getting Started
 
 ### 1. Clone the repo:
