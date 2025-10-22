@@ -123,6 +123,8 @@ export default function useTypingTrainer(words: string[], time: number): UseTypi
     const elapsedMinutes = startTimeRef.current ? (Date.now() - startTimeRef.current) / 1000 / 60 : 0
     const cpm = elapsedMinutes > 0 ? Math.round(correctChars / elapsedMinutes) : 0
 
+    console.log(cpm)
+
     return {
         currentIndex,
         currentCharIndex,

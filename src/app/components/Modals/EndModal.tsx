@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LogoBlock } from '@/app/components/Modals'
 import { Leaderboard, SaveResult } from '@/app/components/Leaderboard'
 import { supabaseClient } from '@/app/lib/supabaseClient'
-import { isAuthenticated, saveCpm, saveUserData } from '@/app/lib/utils'
+import { getCpm, getDeviceId, isAuthenticated, saveCpm, saveUserData } from '@/app/lib/utils'
 import { useTranslation } from '@/app/components/TranslationContext/TranslationContext'
 
 type EndModalProps = {
@@ -16,38 +16,74 @@ type EndModalProps = {
 
 export default function EndModal({ isOpen, errorCount, accuracy, charCount, onRestartTraining, cpm }: EndModalProps) {
     const [leaderboardRefreshKey, setLeaderboardRefreshKey] = useState<number>(0)
+    const isAuthenticatedUser = isAuthenticated()
+    const { t } = useTranslation()
 
-    const {t} = useTranslation()
+    useEffect(() => {
+        if (!isAuthenticatedUser || !isOpen) return
+
+        const autoUpdate = async () => {
+
+            try {
+                const bestCpm = Number(getCpm())
+                const deviceId = getDeviceId()
+
+                console.log(deviceId, bestCpm, cpm)
+                if (cpm > bestCpm) {
+                    const { data, error } = await supabaseClient
+                        .from('leaderboard')
+                        .update({ cpm: cpm, accuracy: accuracy })
+                        .eq('id', deviceId)
+                        .select('cpm')
+                        .single()
+
+                    if (error) {
+                        console.log(error)
+                        return
+                    }
+
+                    if (data) {
+                        saveCpm(data.cpm.toString())
+                        setLeaderboardRefreshKey((prev) => prev + 1)
+                    }
+                }
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        autoUpdate()
+    }, [isOpen])
 
     if (!isOpen) return null
 
     const saveResult = async (name: string) => {
         try {
-            const {data, error} = await supabaseClient
+            const { data, error } = await supabaseClient
                 .from('leaderboard')
-                .insert([
-                    { name: name, cpm: cpm, accuracy: accuracy }
-                ])
-                .select("id,name,cpm")
+                .insert([{ name: name, cpm: cpm, accuracy: accuracy }])
+                .select('id,name,cpm')
                 .single()
+
+            if (error) {
+                console.log(error)
+                return
+            }
 
             if (data) {
                 saveUserData(data.id, data.name)
                 saveCpm(data.cpm.toString())
-                setLeaderboardRefreshKey(prev => prev + 1)
+                setLeaderboardRefreshKey((prev) => prev + 1)
             }
-
         } catch (error) {
             console.error(error)
         }
     }
 
-    const isAuthenticatedUser = isAuthenticated()
-
     return (
         <div className='fixed inset-0 flex items-center justify-center z-50 bg-zinc-800/50 backdrop-blur-sm'>
             <div className='bg-white flex justify-between dark:bg-zinc-900 p-8 rounded-2xl shadow-2xl max-w-[1200px] w-full mx-4 max-h-[90vh] overflow-y-auto'>
-                <div className="">
+                <div className=''>
                     <div className='text-center mb-8'>
                         <LogoBlock />
                         <h2 className='text-4xl font-bold text-zinc-800 dark:text-zinc-100 mt-4 mb-2'>{t('result')}</h2>
@@ -82,12 +118,9 @@ export default function EndModal({ isOpen, errorCount, accuracy, charCount, onRe
                     </div>
                 </div>
 
-                <div className="max-w-[500px] w-full">
-                    {!isAuthenticatedUser && <SaveResult onSave={saveResult}/>}
-                    <Leaderboard
-                        countResults={10}
-                        refreshBoard={leaderboardRefreshKey}
-                    />
+                <div className='max-w-[500px] w-full'>
+                    {!isAuthenticatedUser && <SaveResult onSave={saveResult} />}
+                    <Leaderboard countResults={10} refreshBoard={leaderboardRefreshKey} />
                 </div>
             </div>
         </div>
