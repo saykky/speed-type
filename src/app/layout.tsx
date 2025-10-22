@@ -4,6 +4,7 @@ import React from "react";
 import Script from "next/script";
 import Providers from "@/app/providers";
 import { Quicksand } from "next/font/google";
+import { TranslationProvider } from '@/app/components/TranslationContext/TranslationContext'
 
 const quickSandSans = Quicksand({
     variable: "--font-quicksand",
@@ -42,7 +43,11 @@ export default function RootLayout({
             />
         </head>
         <body className={quickSandSans.variable}>
-            <Providers>{children}</Providers>
+            <TranslationProvider>
+                <Providers>
+                    {children}
+                </Providers>
+            </TranslationProvider>
         </body>
         </html>
     );

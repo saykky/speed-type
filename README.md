@@ -28,7 +28,7 @@ Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Pra
 - ✅ Error and accuracy tracking
 - 🔄 Theme switcher: Light / Dark / System
 - 🎹 Visual keyboard
-- 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.tsx), [useTypingTrainer](src/app/hooks/useTypingTrainer.tsx)
+- 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.ts), [useTypingTrainer](src/app/hooks/useTypingTrainer.ts)
 - 🗃️ Supabase integration
 - 🌟 Leaderboard of the best users
 

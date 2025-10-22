@@ -5,7 +5,7 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import {JSX, useEffect} from "react";
 
-export default function Switcher() : JSX.Element{
+export default function SwitcherTheme() : JSX.Element{
     const { resolvedTheme, setTheme } = useTheme();
     const [open, setOpen] = React.useState(false);
 

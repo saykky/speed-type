@@ -57,7 +57,7 @@ export default function Leaderboard({countResults, refreshBoard}: LeaderboardPro
     const isUserInList = (result: UserResult) => result.id === deviceId
 
     return (
-        <div className='max-w-[800px] m-auto'>
+        <div className='w-[500px] m-auto'>
             <h2 className='text-xl font-bold my-[10px] text-center'>Top {countResults}</h2>
             <div className='max-h-[450px] overflow-y-auto border-2 border-white dark:border-zinc-800 rounded-lg mb-2'>
                 <ul className='space-y-2 p-3'>

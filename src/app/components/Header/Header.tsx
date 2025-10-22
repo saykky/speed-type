@@ -1,7 +1,8 @@
 "use client"
 
 import {Logo, Information} from "@/app/components/Header";
-import Switcher from "@/app/components/Switcher";
+import SwitcherTheme from "@/app/components/SwitcherTheme";
+import SwitcherLanguage from '@/app/components/SwitcherLanguage'
 
 type HeaderProps = {
     timeLeft: number
@@ -17,7 +18,10 @@ export default function Header({timeLeft, errors, accuracy}: HeaderProps) {
                     errors={errors}
                     timeLeft={timeLeft}
                     accuracy={accuracy} />
-            <Switcher />
+            <div className="flex gap-10">
+                <SwitcherTheme />
+                <SwitcherLanguage />
+            </div>
         </div>
     )
 }
