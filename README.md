@@ -31,6 +31,7 @@ Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Pra
 - 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.ts), [useTypingTrainer](src/app/hooks/useTypingTrainer.ts)
 - 🗃️ Supabase integration
 - 🌟 Leaderboard of the best users
+- 🔁 Auto updating of user results in the database
 - 🌐 Localization UI (en | ru) [TranslationContext](src/app/components/TranslationContext/TranslationContext.tsx)
 
 ## 🙏🏻 Acknowledgments
