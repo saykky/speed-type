@@ -9,7 +9,7 @@ Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Pra
 
 ## Demo [click me](https://speed-type-two.vercel.app/)
 <div align="center">
-  <img src="./docs/preview.gif" alt="Logo" width="800" height="300">
+  <img src="./docs/preview.gif" alt="Logo" width="500" height="300">
 </div>
 
 # 🛠 Tech Stack
@@ -31,13 +31,14 @@ Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Pra
 - 🔧 Custom hooks: [useTypingWords](src/app/hooks/useTypingWords.ts), [useTypingTrainer](src/app/hooks/useTypingTrainer.ts)
 - 🗃️ Supabase integration
 - 🌟 Leaderboard of the best users
+- 🌐 Localization UI (en | ru) [TranslationContext](src/app/components/TranslationContext/TranslationContext.tsx)
 
 ## 🙏🏻 Acknowledgments
 - [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
 ## Preview dark theme
 <div align="center">
-  <img src="./docs/dark_preview_dark_start.png" alt="Logo" width="600" height="400">
+  <img src="./docs/preview_dark_start.png" alt="Logo" width="600" height="400">
 </div>
 <div align="center">
   <img src="./docs/preview_dark.png" alt="Logo" width="600" height="400">
@@ -57,10 +58,6 @@ Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Pra
   <img src="./docs/preview_light_end.png" alt="Logo" width="600" height="400">
 </div>
 
-## Preview highlighting in the top
-<div align="center">
-  <img src="./docs/preview_top.png" alt="Logo" width="600" height="400">
-</div>
 # 🚀 Getting Started
 
 ### 1. Clone the repo:
