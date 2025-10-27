@@ -12,7 +12,7 @@ type UseTypingTrainerReturn = {
     cpm: number
 }
 
-export default function useTypingTrainer(words: string[], time: number): UseTypingTrainerReturn {
+export default function useTypingTrainer(words: string[], time: number, keyboardLocale: 'en' | 'ru'): UseTypingTrainerReturn {
     const [currentIndex, setCurrentIndex] = useState<number>(0)
     const [currentCharIndex, setCurrentCharIndex] = useState<number>(0)
     const [errors, setErrors] = useState<number[]>([])
@@ -39,6 +39,17 @@ export default function useTypingTrainer(words: string[], time: number): UseTypi
         }
     }
 
+    const checkInputSymbol = (event: KeyboardEvent): boolean => {
+        const patterns = {
+            en: /^[a-zA-Z]$/.test(event.key),
+            ru: /^[а-яА-Я]$/.test(event.key)
+        }
+
+        console.log(event.key, keyboardLocale, patterns[keyboardLocale])
+
+        return patterns[keyboardLocale]
+    }
+
     useEffect(() => {
         currentIndexRef.current = currentIndex
         currentCharIndexRef.current = currentCharIndex
@@ -49,7 +60,9 @@ export default function useTypingTrainer(words: string[], time: number): UseTypi
 
     useEffect(() => {
         const keyDown = (e: KeyboardEvent) => {
-            if (!/^[a-zA-Z]$/.test(e.key) || currentIndexRef.current >= wordsRef.current.length) return
+            if (!checkInputSymbol(e)) return
+
+            if (currentIndexRef.current >= wordsRef.current.length) return
 
             if (!isRunningRef.current) setIsRunning(true)
             if (timeLeftRef.current <= 0) return
@@ -122,8 +135,6 @@ export default function useTypingTrainer(words: string[], time: number): UseTypi
 
     const elapsedMinutes = startTimeRef.current ? (Date.now() - startTimeRef.current) / 1000 / 60 : 0
     const cpm = elapsedMinutes > 0 ? Math.round(correctChars / elapsedMinutes) : 0
-
-    console.log(cpm)
 
     return {
         currentIndex,

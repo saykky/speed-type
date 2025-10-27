@@ -29,7 +29,7 @@ export default function Training({time, onRestartTraining, keyboardLocale}: Trai
         accuracy,
         charCount,
         cpm
-    } = useTypingTrainer(words, time);
+    } = useTypingTrainer(words, time, keyboardLocale);
 
     const { visibleWords, stylesWords } = useTypingWords(words, currentIndex);
 
