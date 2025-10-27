@@ -1,17 +1,24 @@
 'use client'
 
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 import { LogoBlock } from '@/app/components/Modals'
 import { Leaderboard } from '@/app/components/Leaderboard'
 import SwitcherLanguage from '@/app/components/SwitcherLanguage'
 import { useTranslation } from '@/app/components/TranslationContext/TranslationContext'
+import KeyboardLocaleSwitcher from '@/app/components/KeyboardLocaleSwitcher'
 
 type StartModalProps = {
     isOpen: boolean
-    onStart: (time: number) => void
+    onStart: (time: number, locale: 'en' | 'ru') => void
 }
 
 export default function StartModal({ isOpen, onStart }: StartModalProps) {
+    const [keyboardLocale, setKeyboardLocale] = useState<'en' | 'ru'>('en')
+
+    const switchKeyboardLocale = (locale: 'en' | 'ru') => {
+        setKeyboardLocale(locale)
+    }
+
     const { t } = useTranslation()
 
     if (!isOpen) return null
@@ -36,7 +43,7 @@ export default function StartModal({ isOpen, onStart }: StartModalProps) {
                                 {[15, 30, 60, 120].map((time) => (
                                     <button
                                         key={time}
-                                        onClick={() => onStart(time)}
+                                        onClick={() => onStart(time, keyboardLocale)}
                                         className='flex-1 py-3 px-6 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg font-medium hover:from-purple-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 cursor-pointer'
                                     >
                                         <span className='text-lg font-semibold'>{time}</span>
@@ -45,9 +52,15 @@ export default function StartModal({ isOpen, onStart }: StartModalProps) {
                                 ))}
                             </div>
                         </div>
-                        <div className='flex justify-start items-center gap-4'>
-                            <p className="text-[24px]">{t('changeLanguage')}</p>
-                            <SwitcherLanguage />
+                        <div className='flex flex-col justify-start gap-4'>
+                            <div className='flex gap-2'>
+                                <p className="text-[24px]">{t('changeLanguage')}</p>
+                                <SwitcherLanguage />
+                            </div>
+                            <KeyboardLocaleSwitcher
+                                activeLocale={keyboardLocale}
+                                switchLocale={switchKeyboardLocale}
+                            />
                         </div>
                     </div>
 

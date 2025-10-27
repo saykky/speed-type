@@ -12,7 +12,7 @@ type WordsProps = {
 
 export default function Words({words, styles, currentWordVisibleIndex, currentCharIndex, errors}: WordsProps) {
     return (
-        <div className="py-[50px] flex gap-[10px] justify-center font-bold text-[50px]">
+        <div className="py-[10px] flex gap-[10px] justify-center font-bold text-[50px]">
             {words.map((word, wordIndex) => {
                 const isCurrent = wordIndex === currentWordVisibleIndex
 

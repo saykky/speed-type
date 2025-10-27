@@ -7,10 +7,12 @@ import Training from '@/app/components/Training';
 export default function Home() {
     const [startModalIsOpen, setStartModalIsOpen] = useState<boolean>(true);
     const [time, setTime] = useState<number>(0);
+    const [keyboardLocale, setKeyboardLocale] = useState<'en' | 'ru'>('en');
 
-    const startTraining = (time: number) => {
+    const startTraining = (time: number, locale: 'en' | 'ru') => {
         setStartModalIsOpen(false)
         setTime(time)
+        setKeyboardLocale(locale)
     }
 
     const onRestartTraining = () => {
@@ -25,7 +27,7 @@ export default function Home() {
                 onStart={startTraining}
             />
             <main>
-                {time > 0 && <Training time={time} onRestartTraining={onRestartTraining}/>}
+                {time > 0 && <Training time={time} keyboardLocale={keyboardLocale} onRestartTraining={onRestartTraining}/>}
             </main>
         </div>
     );

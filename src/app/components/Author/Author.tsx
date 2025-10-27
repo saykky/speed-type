@@ -1,12 +1,9 @@
 import React from 'react';
 import { Code } from 'lucide-react';
-import { useTranslation } from '@/app/components/TranslationContext/TranslationContext'
 
 export default function Author() {
-    const {t} = useTranslation()
-
     return (
-        <div className='pt-[10%] mb-[5%] text-center'>
+        <div className='pt-[20px] text-center'>
             <span className='inline-flex items-center gap-2 text-[18px] md:text-[22px] tracking-wide'>
                 <Code className='w-5 h-5 text-purple-500 dark:text-purple-400' />
                 <span className='flex gap-3 text-zinc-800 dark:text-gray-300'>

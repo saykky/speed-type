@@ -18,6 +18,7 @@ export type TranslationKey =
     | 'changeLanguage'
     | 'readyType'
     | 'name'
+    | 'keyboardLocale'
 
 export type Translations = {
     en: Record<TranslationKey, string>
@@ -46,7 +47,8 @@ export const translations: Translations = {
         second: 's',
         changeLanguage: 'Language - ',
         readyType: 'Ready to Type?',
-        name: 'name'
+        name: 'name',
+        keyboardLocale: 'Keyboard locale'
     },
     ru: {
         top: 'Топ',
@@ -69,6 +71,7 @@ export const translations: Translations = {
         second: 'с',
         changeLanguage: 'Язык - ',
         readyType: 'Готов к печати?',
-        name: 'имя'
+        name: 'имя',
+        keyboardLocale: 'Раскладка клавиатуры'
     },
 }

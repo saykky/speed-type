@@ -7,16 +7,17 @@ import { Keyboard } from '@/app/components/Keyboard';
 import { EndModal } from '@/app/components/Modals';
 import { useEffect, useMemo, useState } from 'react';
 import { getRandomWords } from '@/app/lib/utils';
-import { WORDS } from '@/app/const/words';
+import { WORDS_EN, WORDS_RU } from '@/app/const/words';
 
 type TrainingProps = {
     time: number
+    keyboardLocale: 'en' | 'ru'
     onRestartTraining: () => void
 }
 
-export default function Training({time, onRestartTraining}: TrainingProps) {
+export default function Training({time, onRestartTraining, keyboardLocale}: TrainingProps) {
     const [endModalIsOpen, setEndModalIsOpen] = useState(false);
-    const words = useMemo(() => getRandomWords(WORDS), [])
+    const words = useMemo(() => getRandomWords(keyboardLocale == 'en' ? WORDS_EN : WORDS_RU), [])
 
     const {
         currentIndex,
@@ -53,6 +54,7 @@ export default function Training({time, onRestartTraining}: TrainingProps) {
             />
             <Keyboard
                 activeKey={activeKey}
+                keyboardLocale={keyboardLocale}
             />
             <Author />
             <EndModal

@@ -34,8 +34,6 @@ Fast typing trainer with CPM tracking, error stats, themes, and leaderboard. Pra
 - 🔁 Auto updating of user results in the database
 - 🌐 Localization UI (en | ru) [TranslationContext](src/app/components/TranslationContext/TranslationContext.tsx)
 
-## 🙏🏻 Acknowledgments
-- [![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
 
 ## Preview dark theme
 <div align="center">
